@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+
+       <title>Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+   </head>
+   <body>
+   <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about'%}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact'%}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  </header>
+
+
+<div class="container mt-4">
+    <h1 style="font-size:25px,bold" >Details of BC-B(PERIKA)</h1>
+  <form method="post" action="/submitindex" class="row g-3 needs-validation" novalidate>
+                            {%csrf_token%}
+
+      {% for message in messages %}
+
+                    <div class="alert alert-danger">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+                        {{ message }}
+                    </div>
+            {% endfor %}
+<!--    <div class="col-md-4">-->
+<!--      <label for="validationCustom01" class="form-label">Head of family</label>-->
+<!--      <input type="text" name="hname" class="form-control" id="validationCustom01" required>-->
+<!--      <div class="invalid-feedback">-->
+<!--        Please provide a valid name.-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Mobile no.</label>
+        <input type="text" name="mobile" class="form-control" id="validationCustom02" required title="Error Message" pattern="[4-9]{1}[0-9]{9}">
+      <div class="invalid-feedback">
+        Please provide a valid input.
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Electricity bill(USC) no.</label>
+      <input type="number" name="electricity" class="form-control" id="validationCustom03" required pattern="[0-9]{8} ">
+      <div class="invalid-feedback">
+        Please provide a valid input.
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="validationCustom05" class="form-label">House no.</label>
+      <input type="text" name="hno" class="form-control" id="validationCustom05" required>
+      <div class="invalid-feedback">
+        Please provide a valid input.
+      </div>
+    </div>
+    <div class="col-md-4">
+    <label  class="form-label">District</label>
+       <select name="district" id="districtSel" size="1" class="form-select"  required>
+       <option value="" selected="selected"  >Select District</option>
+       </select>
+    <div class="invalid-feedback">
+        Please select a valid district
+      </div>
+    </div>
+
+    <div class="col-md-4">
+    <label  class="form-label">Mandal</label>
+        <select name="mandal" id="mandalSel" size="1" class="form-select"  required>
+       <option value="" selected="selected" >Select Mandal</option>
+   </select>
+    <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+
+    <div class="col-md-8" hidden>
+    <label  class="form-label" >Village</label>
+       <select name="village" id="villageSel" size="1" class="form-select">
+    <option value="" selected="selected">Village</option>
+    </select>
+    <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="validationCustom99" class="form-label">village</label>
+      <input type="text" name="village" class="form-control" id="validationCustom99" required>
+      <div class="invalid-feedback">
+        Please provide a valid input.
+      </div>
+    </div>
+
+<!--      <div class="col-md-8">-->
+<!--    <label for="exampleFormControlTextarea1" class="form-label">About Your Family</label>-->
+<!--    <input class="form-control" name="info" id="exampleFormControlTextarea1" rows="3" required>-->
+<!--  </div>-->
+
+    <div class="col-12">
+      <button class="btn btn-dark" type="submit">Get started</button>
+    </div>
+  </form>
+
+
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script>
+    (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+  </script>
+
+
+
+
+<script>
+ var stateObject = {
+"Adilabad":
+{
+"Adilabad (urban)": ["new Delhi", "North Delhi"],
+"Adilabad (rural)": ["Thiruvananthapuram", "Palakkad"],
+"Mavala": ["North Goa", "South Goa"],
+"Gudihatnoor": ["new Delhi", "North Delhi"],
+"Bajahatnoor": ["Thiruvananthapuram", "Palakkad"],
+"Bela": ["North Goa", "South Goa"],
+"Boadh": ["new Delhi", "North Delhi"],
+"Jainath": ["Thiruvananthapuram", "Palakkad"],
+"Indervelly": ["North Goa", "South Goa"],
+"Narnoor": ["new Delhi", "North Delhi"],
+"Gudiguda": ["Thiruvananthapuram", "Palakkad"],
+"Utnoor": ["North Goa", "South Goa"],
+},
+
+"Bhadradri Kothagudem":
+ {
+"Kothagudem": ["Dunstan", "Mitchell"],
+"Palwancha": ["Altona", "Euroa"],
+"Tekulapalli": ["Altona", "Euroa"],
+"Yellandu": ["Altona", "Euroa"],
+"Chandrugonda": ["Altona", "Euroa"],
+"Mulakalapalli": ["Altona", "Euroa"],
+"Aswaraopeta": ["Altona", "Euroa"],
+"Dammapeta": ["Altona", "Euroa"],
+"Gundala": ["Altona", "Euroa"],
+"Julurpadu": ["Altona", "Euroa"],
+"Sujathanagar": ["Altona", "Euroa"],
+"Chunchupalle": ["Altona", "Euroa"],
+"Laxmidevipalli": ["Altona", "Euroa"],
+"Allapalli": ["Altona", "Euroa"],
+"Annapureddypalli": ["Altona", "Euroa"],
+"Bhadrachalam": ["Altona", "Euroa"],
+"Dummugudem": ["Altona", "Euroa"],
+"Cherla": ["Altona", "Euroa"],
+"Burgampahad": ["Altona", "Euroa"],
+"Aswapuram": ["Altona", "Euroa"],
+"Manuguru": ["Altona", "Euroa"],
+"Pinapaka": ["Altona", "Euroa"],
+"Karakagudem": ["Altona", "Euroa"],
+
+},
+
+"Hyderabad":
+ {
+"Amberpet": ["Dunstan", "Mitchell"],
+"Asif Nagar": ["Altona", "Euroa"],
+"Bahadurpura": ["Altona", "Euroa"],
+"Bandlaguda": ["Altona", "Euroa"],
+"Charminar": ["Altona", "Euroa"],
+"Golkonda": ["Altona", "Euroa"],
+"Himayathnagar": ["Altona", "Euroa"],
+"Nampally": ["Altona", "Euroa"],
+"Saidabad": ["Altona", "Euroa"],
+"Ameerpet": ["Altona", "Euroa"],
+"Khairtabad": ["Altona", "Euroa"],
+"Marredpally": ["Altona", "Euroa"],
+"Musheerabad": ["Altona", "Euroa"],
+"Secunderabad": ["Altona", "Euroa"],
+"Shaikpet": ["Altona", "Euroa"],
+"Trimulgherry": ["Altona", "Euroa"],
+},
+
+"Jagtial":
+ {
+"Jagitial": ["Acadia", "Bighorn"],
+"Jagitial Rural": ["Washington", ""],
+"Raikal": ["Acadia", "Bighorn"],
+"Sarangapur": ["Washington", ""],
+"Beerpur": ["Acadia", "Bighorn"],
+"Dharmapuri": ["Washington", ""],
+"Buggaram": ["Acadia", "Bighorn"],
+"Pegadapalli": ["Washington", ""],
+"Gollapalli": ["Acadia", "Bighorn"],
+"Mallial": ["Washington", ""],
+"Kodimial": ["Acadia", "Bighorn"],
+"Velgatur": ["Washington", ""],
+"Korutla": ["Acadia", "Bighorn"],
+"Metpalli": ["Washington", ""],
+"Mallapur": ["Acadia", "Bighorn"],
+"Ibrahimpatnam": ["Washington", ""],
+"Medipalli": ["Acadia", "Bighorn"],
+"Kathlapur": ["Washington", ""]
+
+},
+
+"Jangaon":
+{
+" Bachannapeta": ["Dunstan", "Mitchell"],
+"Devaruppala": ["Altona", "Euroa"],
+"Gundala": ["Altona", "Euroa"],
+"Jangaon": ["Altona", "Euroa"],
+"Lingalaghanpur": ["Altona", "Euroa"],
+"Narmetta": ["Altona", "Euroa"],
+"Raghunathapalle": ["Altona", "Euroa"],
+"Tarigoppula": ["Altona", "Euroa"],
+"Chilpur": ["Altona", "Euroa"],
+"Zaffergadh": ["Altona", "Euroa"],
+"Kodakandla": ["Altona", "Euroa"],
+"Palakurthi": ["Altona", "Euroa"],
+"Station Ghanpur": ["Altona", "Euroa"],
+},
+
+"Jayashankar Bhupalpally":
+{
+"Bhupalpalle": ["Acadia", "Bighorn"],
+"Chityal": ["Washington", ""],
+"Ghanpur": ["Washington", ""],
+"Kataram": ["Acadia", "Bighorn"],
+"Mahadevpur": ["Washington", ""],
+"MahaMutharam": ["Acadia", "Bighorn"],
+"Malharrao": ["Washington", ""],
+"Mogullapalle": ["Acadia", "Bighorn"],
+"Palimela": ["Washington", ""],
+"Regonda": ["Acadia", "Bighorn"],
+"Tekumatla": ["Washington", ""],
+"Eturunagaram": ["Acadia", "Bighorn"],
+"Govindaraopet": ["Washington", ""],
+"Mangapet": ["Acadia", "Bighorn"],
+"Mulug": ["Washington", ""],
+"Tadvai": ["Acadia", "Bighorn"],
+"Vajedu": ["Washington", ""],
+"Venkatapur": ["Washington", ""],
+Kannaigudem:["abcdd",""],
+},
+
+"Jogulamba Gadwal":
+{
+"Alampur": ["Acadia", "Bighorn"],
+"Dharoor": ["Acadia", "Bighorn"],
+"Gadwal": ["Acadia", "Bighorn"],
+"Ghattu": ["Acadia", "Bighorn"],
+"leeja": ["Acadia", "Bighorn"],
+"Itikyala": ["Acadia", "Bighorn"],
+"Kaloor Timmanadoddi": ["Acadia", "Bighorn"],
+"Maldakal": ["Acadia", "Bighorn"],
+"Manopad": ["Acadia", "Bighorn"],
+"Rajoli": ["Acadia", "Bighorn"],
+"Undavelly": ["Acadia", "Bighorn"],
+"Waddepalle": ["Acadia", "Bighorn"],
+
+},
+
+
+"Kamareddy": {
+"Banswadal": ["Acadia", "Bighorn"],
+"Bhiknoor": ["Acadia", "Bighorn"],
+"Bibipet": ["Acadia", "Bighorn"],
+"Bichkunda": ["Acadia", "Bighorn"],
+"Birkur": ["Acadia", "Bighorn"],
+"Domakonda": ["Acadia", "Bighorn"],
+"Gandhari": ["Acadia", "Bighorn"],
+"Jukka": ["Acadia", "Bighorn"],
+"Kamareddy": ["Acadia", "Bighorn"],
+"Lingampet": ["Acadia", "Bighorn"],
+"Machareddy": ["Acadia", "Bighorn"],
+"Madnoor": ["Acadia", "Bighorn"],
+"Nagireddypet": ["Acadia", "Bighorn"],
+"Nasrullabad": ["Acadia", "Bighorn"],
+"Nizamsagar": ["Acadia", "Bighorn"],
+"Pedda kodapgal": ["Acadia", "Bighorn"],
+"pitlam": ["Acadia", "Bighorn"],
+"Rajampet": ["Acadia", "Bighorn"],
+"Ramareddy": ["Acadia", "Bighorn"],
+"Sadasivanagar": ["Acadia", "Bighorn"],
+"Tadwai": ["Acadia", "Bighorn"],
+"Yellareddy": ["Acadia", "Bighorn"],
+},
+
+"Karimnagar":
+ {
+"Chigurumamidi": ["Acadia", "Bighorn"],
+"Choppadandi": ["Acadia", "Bighorn"],
+"Ellandakunta": ["Acadia", "Bighorn"],
+"Gangadhara": ["Acadia", "Bighorn"],
+"Ganneruvaram": ["Acadia", "Bighorn"],
+"Huzurabad": ["Acadia", "Bighorn"],
+"Jammikunta": ["Acadia", "Bighorn"],
+"Karimnagar": ["Acadia", "Bighorn"],
+"Karimnagar Rural": ["Acadia", "Bighorn"],
+"Kothapalli": ["Acadia", "Bighorn"],
+"Manakondur": ["Acadia", "Bighorn"],
+"Ramadugu": ["Acadia", "Bighorn"],
+"Shankarapatnam": ["Acadia", "Bighorn"],
+"Thimmapur": ["Acadia", "Bighorn"],
+"Veenavanka": ["Acadia", "Bighorn"],
+"V.Saidapur": ["Acadia", "Bighorn"],
+},
+
+"Khammam":
+{
+"Bonakal": ["Acadia", "Bighorn"],
+"Chinthakani": ["Acadia", "Bighorn"],
+"Enkoor": ["Acadia", "Bighorn"],
+"Kallur": ["Acadia", "Bighorn"],
+"kamepalle": ["Acadia", "Bighorn"],
+"Khammam Rural": ["Acadia", "Bighorn"],
+"Khammam Urban": ["Acadia", "Bighorn"],
+"Konijeria": ["Acadia", "Bighorn"],
+"Kusumanchi": ["Acadia", "Bighorn"],
+"Madhira": ["Acadia", "Bighorn"],
+"Mudigonda": ["Acadia", "Bighorn"],
+"Nelakondapalle": ["Acadia", "Bighorn"],
+"Penuballi": ["Acadia", "Bighorn"],
+"Raghunadhapalem": ["Acadia", "Bighorn"],
+"Sathupalle": ["Acadia", "Bighorn"],
+"Singareni": ["Acadia", "Bighorn"],
+"Thallada": ["Acadia", "Bighorn"],
+"Thirumalayapalem": ["Acadia", "Bighorn"],
+"Vemsoor": ["Acadia", "Bighorn"],
+"Wyra": ["Acadia", "Bighorn"],
+"Yerrupalem": ["Acadia", "Bighorn"],
+},
+
+"Kumuram Bheem":
+{
+"Asifabad": ["Acadia", "Bighorn"],
+"Bejjur": ["Acadia", "Bighorn"],
+"Chintala Manepally": ["Acadia", "Bighorn"],
+"Dahegaon": ["Acadia", "Bighorn"],
+"Jainoor": ["Acadia", "Bighorn"],
+"Kagaz Nagar": ["Acadia", "Bighorn"],
+"Kerameri": ["Acadia", "Bighorn"],
+"Kouthala": ["Acadia", "Bighorn"],
+"Lingapur": ["Acadia", "Bighorn"],
+"Penchikalpet": ["Acadia", "Bighorn"],
+"Rebbena": ["Acadia", "Bighorn"],
+"Sirpur(T)": ["Acadia", "Bighorn"],
+"Sirpur(U)": ["Acadia", "Bighorn"],
+"Tiryani": ["Acadia", "Bighorn"],
+"Wankdi": ["Acadia", "Bighorn"],
+},
+
+"Mahabubabad":
+{
+"Bayyaram": ["Acadia", "Bighorn"],
+"Chinnagudur": ["Acadia", "Bighorn"],
+"Danthalapalle": ["Acadia", "Bighorn"],
+"Dornakal": ["Acadia", "Bighorn"],
+"Gangaram": ["Acadia", "Bighorn"],
+"Garla": ["Acadia", "Bighorn"],
+"Gudur": ["Acadia", "Bighorn"],
+"Kesamudram": ["Acadia", "Bighorn"],
+"Kothaguda": ["Acadia", "Bighorn"],
+"kuravi": ["Acadia", "Bighorn"],
+"Mahabubabad": ["Acadia", "Bighorn"],
+"Maripeda": ["Acadia", "Bighorn"],
+"Narsimhulapet": ["Acadia", "Bighorn"],
+"Nellikudur": ["Acadia", "Bighorn"],
+"Peddavangara": ["Acadia", "Bighorn"],
+"Thorrur": ["Acadia", "Bighorn"],
+},
+
+"Mahabubnagar": {
+"Addakal": ["Acadia", "Bighorn"],
+"Balangar": ["Acadia", "Bighorn"],
+"Bhoothpur": ["Acadia", "Bighorn"],
+"Chinna Chinna Kunta": ["Acadia", "Bighorn"],
+"Devarakadara": ["Acadia", "Bighorn"],
+"Gandeed": ["Acadia", "Bighorn"],
+"Hanwada": ["Acadia", "Bighorn"],
+"Jadcherla": ["Acadia", "Bighorn"],
+"Kolikonda": ["Acadia", "Bighorn"],
+"Mahabubanagar(Urban)": ["Acadia", "Bighorn"],
+"Mahabubanagar(Rural)": ["Acadia", "Bighorn"],
+"Midjil": ["Acadia", "Bighorn"],
+"Moosapet": ["Acadia", "Bighorn"],
+"Nawabpet": ["Acadia", "Bighorn"],
+"Rajapur": ["Acadia", "Bighorn"],
+},
+
+"Mancherial": {
+"Chennur": ["Dunstan", "Mitchell"],
+"Jaipur": ["Altona", "Euroa"],
+"Bheemaram": ["Altona", "Euroa"],
+"Kotapally": ["Altona", "Euroa"],
+"Luxettipet": ["Altona", "Euroa"],
+"Mancherial": ["Altona", "Euroa"],
+"Naspur": ["Altona", "Euroa"],
+"Hajipur": ["Altona", "Euroa"],
+"Mandamarri": ["Altona", "Euroa"],
+"Dandepally": ["Altona", "Euroa"],
+"Jannaram": ["Altona", "Euroa"],
+"Kasipet": ["Altona", "Euroa"],
+"Bellampally": ["Altona", "Euroa"],
+"Vempally": ["Altona", "Euroa"],
+"Nennel": ["Altona", "Euroa"],
+"Tandur": ["Altona", "Euroa"],
+"Bheemini": ["Altona", "Euroa"],
+"Kannepally": ["Altona", "Euroa"],
+},
+
+"Medak":
+{
+"Alladurg": ["Acadia", "Bighorn"],
+"Chegunta": ["Acadia", "Bighorn"],
+"Chilipched": ["Acadia", "Bighorn"],
+"Haveli Ghanpur": ["Acadia", "Bighorn"],
+"Kowdipalle": ["Acadia", "Bighorn"],
+"Kulcharam": ["Acadia", "Bighorn"],
+"Manoharabad": ["Acadia", "Bighorn"],
+"Medak": ["Acadia", "Bighorn"],
+"Narsapur": ["Acadia", "Bighorn"],
+"Narsingi": ["Acadia", "Bighorn"],
+"Nizampet": ["Acadia", "Bighorn"],
+"Papannapet": ["Acadia", "Bighorn"],
+"Ramayampet": ["Acadia", "Bighorn"],
+"Regode": ["Acadia", "Bighorn"],
+"Shankarampet(A)": ["Acadia", "Bighorn"],
+"Shankarampet(R)": ["Acadia", "Bighorn"],
+"Shivampet": ["Acadia", "Bighorn"],
+"Tekmal": ["Acadia", "Bighorn"],
+"Toopran": ["Acadia", "Bighorn"],
+"Yeldurthy": ["Acadia", "Bighorn"],
+},
+
+"Medchal-Malkajgiri":
+{
+"Alwal": ["Acadia", "Bighorn"],
+"Bachupally": ["Acadia", "Bighorn"],
+"Balanagar": ["Acadia", "Bighorn"],
+"Gandimaisamma Dundigal": ["Acadia", "Bighorn"],
+"Ghatkesar": ["Acadia", "Bighorn"],
+"Kapra": ["Acadia", "Bighorn"],
+"Keesara": ["Acadia", "Bighorn"],
+"Kukatpally": ["Acadia", "Bighorn"],
+"Malkajgiri": ["Acadia", "Bighorn"],
+"Medchal": ["Acadia", "Bighorn"],
+"Medipally": ["Acadia", "Bighorn"],
+"Muduchinthalapally": ["Acadia", "Bighorn"],
+"Quthbullapur": ["Acadia", "Bighorn"],
+"Shamirpet": ["Acadia", "Bighorn"],
+"Uppal": ["Acadia", "Bighorn"],
+},
+
+"Mulugu": {
+"Eturnagaram": ["Acadia", "Bighorn"],
+"Govindaraopet": ["Acadia", "Bighorn"],
+"Kannaigudem": ["Acadia", "Bighorn"],
+"Mangapet": ["Acadia", "Bighorn"],
+"Mulug": ["Acadia", "Bighorn"],
+"Tadvai(Sammakka Sarakka)": ["Acadia", "Bighorn"],
+"Venkatapur": ["Acadia", "Bighorn"],
+"Venkatapuram": ["Acadia", "Bighorn"],
+"Wazeed": ["Acadia", "Bighorn"],
+},
+
+"Nagarkurnool": {
+"Achampet": ["Acadia", "Bighorn"],
+"Amrabad": ["Acadia", "Bighorn"],
+"Balmoor": ["Acadia", "Bighorn"],
+"Bijinapally": ["Acadia", "Bighorn"],
+"Charakonda": ["Acadia", "Bighorn"],
+"Kalwakurthy": ["Acadia", "Bighorn"],
+"Kodair": ["Acadia", "Bighorn"],
+"Kollapur": ["Acadia", "Bighorn"],
+"Lingal": ["Acadia", "Bighorn"],
+"Nagarkurnool": ["Acadia", "Bighorn"],
+"Padara": ["Acadia", "Bighorn"],
+"Peddakothapalle": ["Acadia", "Bighorn"],
+"Pentlavelli": ["Acadia", "Bighorn"],
+"Tadoor": ["Acadia", "Bighorn"],
+"Telkapally": ["Acadia", "Bighorn"],
+"Thimmajilpet": ["Acadia", "Bighorn"],
+"Uppununthala": ["Acadia", "Bighorn"],
+"Urkonda": ["Acadia", "Bighorn"],
+"Vangoor": ["Acadia", "Bighorn"],
+"Veldanda": ["Acadia", "Bighorn"],
+},
+
+"Nalgonda": {
+"Adavidevulapally": ["Acadia", "Bighorn"],
+"Anumulal": ["Acadia", "Bighorn"],
+"Chandampeta": ["Acadia", "Bighorn"],
+"Chandur": ["Acadia", "Bighorn"],
+"Chintha Palle": ["Acadia", "Bighorn"],
+"Chityal": ["Acadia", "Bighorn"],
+"Damercherla": ["Acadia", "Bighorn"],
+"Devarakonda": ["Acadia", "Bighorn"],
+"Gundla Palle": ["Acadia", "Bighorn"],
+"Gurrampode": ["Acadia", "Bighorn"],
+"Kangal": ["Acadia", "Bighorn"],
+"Kattangur": ["Acadia", "Bighorn"],
+"Kethepally": ["Acadia", "Bighorn"],
+"Konda Mallepally": ["Acadia", "Bighorn"],
+"Madugulapally": ["Acadia", "Bighorn"],
+"Marri Guda": ["Acadia", "Bighorn"],
+"Miryalaguda": ["Acadia", "Bighorn"],
+"Munugode": ["Acadia", "Bighorn"],
+"Nakrekal": ["Acadia", "Bighorn"],
+"Nalgonda": ["Acadia", "Bighorn"],
+"Nampally": ["Acadia", "Bighorn"],
+"Narketpalle": ["Acadia", "Bighorn"],
+"Neredugommu": ["Acadia", "Bighorn"],
+"Nidamanur": ["Acadia", "Bighorn"],
+"Pedda Adisharla Palli": ["Acadia", "Bighorn"],
+"Peddavoora": ["Acadia", "Bighorn"],
+"Shaligouraram": ["Acadia", "Bighorn"],
+"Tipparthy": ["Acadia", "Bighorn"],
+"Tirumalgiri(Sagar)": ["Acadia", "Bighorn"],
+"Tripuram": ["Acadia", "Bighorn"],
+"Vemulapally": ["Acadia", "Bighorn"],
+},
+
+
+"Narayanpet":
+ {
+"Damaragidda": ["Acadia", "Bighorn"],
+"Dhanwada": ["Acadia", "Bighorn"],
+"Kosgi": ["Acadia", "Bighorn"],
+"Krishna": ["Acadia", "Bighorn"],
+"Maddur": ["Acadia", "Bighorn"],
+"Maganoor": ["Acadia", "Bighorn"],
+"Makthal": ["Acadia", "Bighorn"],
+"Marikal": ["Acadia", "Bighorn"],
+"Narayanpet": ["Acadia", "Bighorn"],
+"Narwa": ["Acadia", "Bighorn"],
+"Utkoor": ["Acadia", "Bighorn"],
+},
+
+"Nirmal": {
+"Basar": ["Acadia", "Bighorn"],
+"Bhainsa": ["Acadia", "Bighorn"],
+"Dasturabad": ["Acadia", "Bighorn"],
+"Dilwarpur": ["Acadia", "Bighorn"],
+"Kaddam Peddur": ["Acadia", "Bighorn"],
+"Khanapur": ["Acadia", "Bighorn"],
+"kubeer": ["Acadia", "Bighorn"],
+"Kuntala": ["Acadia", "Bighorn"],
+"Laxmanchanda": ["Acadia", "Bighorn"],
+"Lokeshwaram": ["Acadia", "Bighorn"],
+"Mamada": ["Acadia", "Bighorn"],
+"Mudhole": ["Acadia", "Bighorn"],
+"Narsapur(G)": ["Acadia", "Bighorn"],
+"Nirmal Rural": ["Acadia", "Bighorn"],
+"Nirmal(U)": ["Acadia", "Bighorn"],
+"Pembi": ["Acadia", "Bighorn"],
+"Sarangapur": ["Acadia", "Bighorn"],
+"Soan": ["Acadia", "Bighorn"],
+"Tanur": ["Acadia", "Bighorn"],
+},
+
+"Nizamabad":
+{
+"Armoor": ["Dunstan", "Mitchell"],
+"Balkonda": ["Altona", "Euroa"],
+"Bheemgal": ["Altona", "Euroa"],
+"Bodhan": ["Altona", "Euroa"],
+"Chandur": ["Altona", "Euroa"],
+"Dharpally": ["Altona", "Euroa"],
+"Indalwai": ["Altona", "Euroa"],
+"Jakranpalle": ["Altona", "Euroa"],
+"Kammarpally": ["Altona", "Euroa"],
+"Kotagiri": ["Altona", "Euroa"],
+"Makloor": ["Altona", "Euroa"],
+"Mendora": ["Altona", "Euroa"],
+"Morthad": ["Altona", "Euroa"],
+"Mosra": ["Altona", "Euroa"],
+"Mugpal": ["Altona", "Euroa"],
+"Mupkal": ["Altona", "Euroa"],
+"Nandipet": ["Altona", "Euroa"],
+"Navipet": ["Altona", "Euroa"],
+"Nizamabad North ": ["Altona", "Euroa"],
+"Nizamabad Rural": ["Altona", "Euroa"],
+"Nizamabad South": ["Altona", "Euroa"],
+"Renjal": ["Altona", "Euroa"],
+"Rudrur": ["Altona", "Euroa"], "Sirikonda": ["Dunstan", "Mitchell"],
+"Vailpoor": ["Altona", "Euroa"],
+"Varni": ["Altona", "Euroa"],
+"Yedapally": ["Altona", "Euroa"],
+"Yergatla": ["Altona", "Euroa"],
+},
+
+"Peddapalli": {
+"Anthergaon": ["Acadia", "Bighorn"],
+"Dharmaram": ["Washington", ""],
+"Eligaid": ["Acadia", "Bighorn"],
+"Julapalle": ["Acadia", "Bighorn"],
+"Kamanpur": ["Acadia", "Bighorn"],
+"Manthani": ["Acadia", "Bighorn"],
+"Mutharam Manthani": ["Acadia", "Bighorn"],
+"Odela": ["Acadia", "Bighorn"],
+"Palakurthy": ["Acadia", "Bighorn"],
+"Peddapalle": ["Acadia", "Bighorn"],
+"Ramgiri": ["Acadia", "Bighorn"],
+"Ramagundam": ["Acadia", "Bighorn"],
+"Srirampur": ["Acadia", "Bighorn"],
+"Sulthanabad": ["Acadia", "Bighorn"],
+},
+
+"Rajanna Sircilla": {
+"Boinpalle": ["Acadia", "Bighorn"],
+"Chandurthi": ["Washington", ""],
+"Gambhiraopet": ["Acadia", "Bighorn"],
+"Illanthakunta": ["Acadia", "Bighorn"],
+"Konaraopeta": ["Acadia", "Bighorn"],
+"Mustabad": ["Acadia", "Bighorn"],
+"Rudrangi": ["Acadia", "Bighorn"],
+"Sirisilla": ["Acadia", "Bighorn"],
+"Thangallapalli": ["Acadia", "Bighorn"],
+"veernapalli": ["Acadia", "Bighorn"],
+"Vemulawada": ["Acadia", "Bighorn"],
+"Vemulawada Rural": ["Acadia", "Bighorn"],
+"Yella Reddi Peta": ["Acadia", "Bighorn"],
+},
+
+"Rangareddy": {
+"Abdullapurmet": ["Acadia", "Bighorn"],
+"Amangal": ["Washington", ""],
+"Balapur": ["Acadia", "Bighorn"],
+"Chevella": ["Acadia", "Bighorn"],
+"Farooqnagar": ["Acadia", "Bighorn"],
+"Gandipet": ["Acadia", "Bighorn"],
+"Hayathnagar": ["Acadia", "Bighorn"],
+"Ibrahimpatnam": ["Acadia", "Bighorn"],
+"Jilled Chowdergudem": ["Acadia", "Bighorn"],
+"Kadthal": ["Acadia", "Bighorn"],
+"kandukur": ["Acadia", "Bighorn"],
+"Keshampeta": ["Acadia", "Bighorn"],
+"Kondurg": ["Acadia", "Bighorn"],
+"Kothur": ["Acadia", "Bighorn"],
+"Madgul": ["Acadia", "Bighorn"],
+"Maheshwaram": ["Acadia", "Bighorn"],
+"Manchal": ["Acadia", "Bighorn"],
+"Moinabad": ["Acadia", "Bighorn"],
+"Nandigama": ["Acadia", "Bighorn"],
+"Rajendranagar": ["Acadia", "Bighorn"],
+"Saroornagar": ["Acadia", "Bighorn"],
+"Serlingampalle": ["Acadia", "Bighorn"],
+"Shabad": ["Acadia", "Bighorn"],
+"Shamshabad": ["Acadia", "Bighorn"],
+"Shankarpalle": ["Acadia", "Bighorn"],
+"Talakondapally": ["Acadia", "Bighorn"],
+"Yacharam": ["Acadia", "Bighorn"],
+},
+
+"Sangareddy":
+{
+"Kalher": ["Dunstan", "Mitchell"],
+"Kangti": ["Altona", "Euroa"],
+"Manoor": ["Altona", "Euroa"],
+"Nagilgidda": ["Altona", "Euroa"],
+"Narayankhed": ["Altona", "Euroa"],
+"Sirgapoor": ["Altona", "Euroa"],
+"Ameenpur": ["Altona", "Euroa"],
+"Andole": ["Altona", "Euroa"],
+"Gummadidala": ["Altona", "Euroa"],
+"Hathnoora": ["Altona", "Euroa"],
+"Jinnaram": ["Altona", "Euroa"],
+"Kandi": ["Altona", "Euroa"],
+"Kondapur": ["Altona", "Euroa"],
+"Munipally": ["Altona", "Euroa"],
+"Patancheru": ["Altona", "Euroa"],
+"Pulkal": ["Altona", "Euroa"],
+"Ramchandrapuram": ["Altona", "Euroa"],
+"Sadasivpet": ["Altona", "Euroa"],
+"Sangareddy": ["Altona", "Euroa"],
+"Vatpally": ["Altona", "Euroa"],
+"Jharasangam": ["Altona", "Euroa"],
+"Kohir": ["Altona", "Euroa"],
+"Mogudampally": ["Altona", "Euroa"],
+"Nyalkal": ["Altona", "Euroa"],
+"Raikode": ["Altona", "Euroa"],
+"Zaheerabad": ["Altona", "Euroa"],
+
+},
+
+"Siddipet":
+{
+   "Siddipet (Urban)": ["Dunstan", "Mitchell"],
+"Siddipet (Rural)": ["Altona", "Euroa"],
+"Nangnoor": ["Altona", "Euroa"],
+"Chinnakodur": ["Altona", "Euroa"],
+"Thoguta": ["Altona", "Euroa"],
+"Doultabad": ["Altona", "Euroa"],
+"Mirdoddi": ["Altona", "Euroa"],
+"Dubbak": ["Altona", "Euroa"],
+"Cherial": ["Altona", "Euroa"],
+"Komuravelli": ["Altona", "Euroa"],
+"Gajwel": ["Altona", "Euroa"],
+"Jagdevpur": ["Altona", "Euroa"],
+"Kondapak": ["Altona", "Euroa"],
+"Mulug": ["Altona", "Euroa"],
+"Markook": ["Altona", "Euroa"],
+"Wargal": ["Altona", "Euroa"],
+"Raipole": ["Altona", "Euroa"],
+"Husnabad": ["Altona", "Euroa"],
+"Akkannapet": ["Altona", "Euroa"],
+"Koheda": ["Altona", "Euroa"],
+"Bejjanki": ["Altona", "Euroa"],
+"Maddur": ["Altona", "Euroa"],
+},
+
+"Suryapet":
+{
+"Atmakur(s)": ["Dunstan", "Mitchell"],
+"Chivvemla": ["Altona", "Euroa"],
+"Jajireddygudem": ["Altona", "Euroa"],
+"Mothey": ["Altona", "Euroa"],
+"Nuthankal": ["Altona", "Euroa"],
+"Penpahad": ["Altona", "Euroa"],
+"Suryapet": ["Altona", "Euroa"],
+"Thirumalagiri": ["Altona", "Euroa"],
+"Thungathurthy": ["Altona", "Euroa"],
+"Garidepally": ["Altona", "Euroa"],
+"Neredcherla": ["Altona", "Euroa"],
+"Nagaram": ["Altona", "Euroa"],
+"Maddirala": ["Altona", "Euroa"],
+"Palakeedu": ["Altona", "Euroa"],
+"Chilkur": ["Altona", "Euroa"],
+"Huzurnagar": ["Altona", "Euroa"],
+"Kodad": ["Altona", "Euroa"],
+"Mattampally": ["Altona", "Euroa"],
+"Mellachervu": ["Altona", "Euroa"],
+"Munagala": ["Altona", "Euroa"],
+"Nadigudem": ["Altona", "Euroa"],
+"Ananthagiri": ["Altona", "Euroa"],
+"Mallareddygudem": ["Altona", "Euroa"],
+},
+
+"Vikarabad": {
+"Basheerabad": ["Acadia", "Bighorn"],
+"Bommaraspet": ["Acadia", "Bighorn"],
+"Doulthabad": ["Acadia", "Bighorn"],
+"Kodangal": ["Acadia", "Bighorn"],
+"Peddemul": ["Acadia", "Bighorn"],
+"Tandur": ["Acadia", "Bighorn"],
+"Yelal": ["Acadia", "Bighorn"],
+"Doma": ["Acadia", "Bighorn"],
+"Dharur": ["Acadia", "Bighorn"],
+"Bantwaram": ["Acadia", "Bighorn"],
+"Kulkacherla": ["Acadia", "Bighorn"],
+"Kotepally": ["Acadia", "Bighorn"],
+"Marpalle": ["Acadia", "Bighorn"],
+"Mominpet": ["Acadia", "Bighorn"],
+"Nawabpet": ["Acadia", "Bighorn"],
+"Pudur": ["Acadia", "Bighorn"],
+"Pargi": ["Acadia", "Bighorn"],
+"Vikarabad": ["Acadia", "Bighorn"],
+
+},
+
+"Wanaparthy": {
+"Amarchinta": ["Acadia", "Bighorn"],
+"Atmakur": ["Acadia", "Bighorn"],
+"Chinnambavi": ["Acadia", "Bighorn"],
+"Ghanpur (Khilla)": ["Acadia", "Bighorn"],
+"Gopalpeta": ["Acadia", "Bighorn"],
+"Kothakota": ["Acadia", "Bighorn"],
+"Madanapur": ["Acadia", "Bighorn"],
+"Pangal": ["Acadia", "Bighorn"],
+"Pebbair": ["Acadia", "Bighorn"],
+"Peddamandadi": ["Acadia", "Bighorn"],
+"Revally": ["Acadia", "Bighorn"],
+"Srirangapur": ["Acadia", "Bighorn"],
+"Veepanagandla": ["Acadia", "Bighorn"],
+"Wanaparthy": ["Acadia", "Bighorn"],
+
+},
+
+"Warangal (Rural)":
+ {
+"Atmakur": ["Washington", ""],
+"Damera": ["Washington", ""],
+"Geesugonda": ["Washington", ""],
+"Parkal": ["Washington", ""],
+"Parvathagiri": ["Washington", ""],
+"Rayaparthy": ["Washington", ""],
+"Sangem": ["Washington", ""],
+"Shayampet": ["Washington", ""],
+"Wardhannapet": ["Washington", ""],
+"Chennaraopet": ["Washington", ""],
+"Duggondi": ["Washington", ""],
+"Khanapur": ["Washington", ""],
+"Narsampet": ["Washington", ""],
+"Nallabelly": ["Washington", ""],
+"Nekkonda": ["Washington", ""],
+
+},
+
+"Warangal (Urban)":
+{
+"Bheemadevarpalli": ["Acadia", "Bighorn"],
+"Dharmasagar": ["Acadia", "Bighorn"],
+"Elkathurthy": ["Acadia", "Bighorn"],
+"Inavole": ["Acadia", "Bighorn"],
+"Hanamkonda": ["Acadia", "Bighorn"],
+"Hasanparthy": ["Acadia", "Bighorn"],
+"Kamalapur": ["Acadia", "Bighorn"],
+"Kazipet": ["Acadia", "Bighorn"],
+"Khila Warangal": ["Acadia", "Bighorn"],
+"Velair": ["Acadia", "Bighorn"],
+"Warangal": ["Acadia", "Bighorn"],
+
+},
+
+"Yadadri Bhuvanagiri": {
+"Addagudur": ["Dunstan", "Mitchell"],
+"Alair": ["Altona", "Euroa"],
+"Athmakur(M)": ["Altona", "Euroa"],
+"Bhongir": ["Alt inona", "Euroa"],
+"Bibinagar": ["Altona", "Euroa"],
+"Bommalaramaram": ["Altona", "Euroa"],
+"B.Pochampally": ["Altona", "Euroa"],
+"Choutuppal": ["Altona", "Euroa"],
+"Gundala": ["Altona", "Euroa"],
+"Motakondur": ["Altona", "Euroa"],
+"Mothkur": ["Altona", "Euroa"],
+"Narayanapoor": ["Altona", "Euroa"],
+"Rajapet": ["Altona", "Euroa"],
+"Ramannapeta": ["Altona", "Euroa"],
+"Thurkapally": ["Altona", "Euroa"],
+"Valligonda": ["Altona", "Euroa"],
+"Yadagirigutta": ["Altona", "Euroa"]
+},
+
+}
+
+
+
+window.onload = function () {
+var districtSel = document.getElementById("districtSel"),
+mandalSel = document.getElementById("mandalSel"),
+villageSel = document.getElementById("villageSel");
+for (var district in stateObject) {
+districtSel.options[districtSel.options.length] = new Option(district, district);
+}
+districtSel.onchange = function () {
+mandalSel.length = 1; // remove all options bar first
+villageSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+for (var mandal in stateObject[this.value]) {
+mandalSel.options[mandalSel.options.length] = new Option(mandal, mandal);
+}
+}
+districtSel.onchange(); // reset in case page is reloaded
+mandalSel.onchange = function () {
+villageSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+var village = stateObject[districtSel.value][this.value];
+for (var i = 0; i < village.length; i++) {
+villageSel.options[villageSel.options.length] = new Option(village[i], village[i]);
+}
+}
+}
+</script>
+
+    </body>
+
+</html>

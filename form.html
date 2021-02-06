@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Form</title>
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about'%}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact'%}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+    <br>
+    {% if f  %}
+    <h4 class="d-flex justify-content-center"> Your family details are</h4>
+    <table style="width:100% ">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Qualification</th>
+    <th>Role</th>
+  </tr>
+        {% for i in f %}
+  <tr>
+    <td>{{i.name}}</td>
+    <td>{{i.age}}</td>
+    <td>{{i.qual}}</td>
+    <td>{{i.role}}</td>
+
+  </tr>
+        {% endfor %}
+
+</table>
+        <a  href="{%url 'exit' %}" class="btn btn-dark mt-3" style="text-align: center;">Submit Survey</a>
+    <hr>
+    {% endif %}
+
+
+  </div>
+
+
+  <div class="container mt-3">
+        <h4 class="d-flex justify-content-center"> Add your family details</h4>
+
+        <form class="row g-3 needs-validation" method="post" action="/form" novalidate>
+                        {%csrf_token%}
+
+    <div class="col-md-4">
+      <label for="validationCustom09" class="form-label">Name of family member</label>
+      <input type="text" name="fname" class="form-control" id="validationCustom09" required>
+      <div class="invalid-feedback">
+        Please provide a valid name.
+      </div>
+    </div>
+
+          <div class="col-md-4">
+      <label for="validationCustom123" class="form-label">USC no.</label>
+      <input readonly type="text" value="{{usc}}" name="usc" class="form-control" id="validationCustom123" required>
+      <div class="invalid-feedback">
+        Please provide a valid name.
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <label for="validationCustom90" class="form-label">Role</label>
+      <select class="form-select" name="role" id="validationCustom90" required>
+        <option value="Owner">Owner</option>
+        <option value="wife">Wife</option>
+        <option value="children">Children</option>
+
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid option.
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="validationCustom11" class="form-label">Gender</label>
+      <select class="form-select" name="gender" id="validationCustom11" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="validationCustom12" class="form-label">Age</label>
+      <input type="number"  min ="0" name="age" class="form-control" id="validationCustom12" required>
+      <div class="invalid-feedback">
+        Please provide a valid input.
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+     <label for="validationCustom13" class="form-label">Qualification</label>
+      <select class="form-select" name="qual" id="validationCustom13" required>
+        <option value="below 10th">below 10th</option>
+        <option value="10th completed">10+</option>
+        <option value="12th completed">12+</option>
+        <option value="degree">degree</option>
+          <option value="p.g.">p.g.</option>
+          <option value="ITI">ITI</option>
+        <option value="illiterate">illiterate</option>
+          <option value="Other">Other</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+
+          <div class="col-md-4">
+      <label for="validationCustom17" class="form-label">Qualification</label>
+      <select class="form-select" name="occupation" id="validationCustom17" required>
+        <option value="farmer">Farmer</option>
+        <option value="government">Government Employee</option>
+        <option value="private">Private Employee</option>
+        <option value="business">Business</option>
+          <option value="nojob">nojob</option>
+          <option value="Other">Other</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+
+    <div class="col-12 mt-3">
+      <input class="btn btn-dark" name="res" value="Add family member" type="submit">
+    </div>
+
+
+
+  </form>
+
+  </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script>
+    (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+  </script>
+  </body>
+</html>
